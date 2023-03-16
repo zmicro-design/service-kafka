@@ -1,0 +1,18 @@
+#!/bin/bash
+
+service::config_set() {
+  config::check_or_set $1 $2 $SERVICE_CONFIG "${@:3}"
+}
+
+check() {
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
+  fi
+
+  service::config_set SERVICE_KAFKA_PORT text "服务访问端口" 9092
+  service::config_set SERVICE_KAFKA_INTER_BROKER_USER text "INTER_BROKER_USERD"
+  service::config_set SERVICE_KAFKA_INTER_BROKER_PASSWORD text "INTER_BROKER_PASSWORD"
+}
+
+check $@

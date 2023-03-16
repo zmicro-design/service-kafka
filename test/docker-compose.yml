@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+
+  kafka:
+    image: whatwewant/kafka:${SERVICE_KAFKA_IMAGE_VERSION}
+
+networks:
+  default:
+    external: true
+    name: compose-ingress
